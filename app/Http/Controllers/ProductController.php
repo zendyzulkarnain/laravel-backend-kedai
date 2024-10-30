@@ -31,12 +31,12 @@ class ProductController extends Controller
             'name' => 'required|min:3|unique:products',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-            'category' => 'required|in:Food,Drink,Snack',
+            'category' => 'required|in:Food,Drinks ,Snack',
             'image' => 'required|image|mimes:jpeg,png,jpg,svg',
         ]);
 
         $filename = time() . '.' . $request->image->extension();
-        $request->image->storeAs('public/products', $filename);
+        $request->image->storeAs('products', $filename, 'public');
         $data = $request->all();
 
         $product  = new \App\Models\Product;
